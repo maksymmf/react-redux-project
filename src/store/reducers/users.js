@@ -7,12 +7,12 @@ const defaultState = {
 export const usersReducer = (state = defaultState, action) => {
     switch (action.type) {
         case DISPLAY_USERS: {
-          return {
-              ...state,
-              users: [
-                  ...state.users,
-                  ...action.payload
-              ]
+            return {
+                ...state,
+                users: [
+                    ...state.users,
+                    ...action.payload
+                ]
           }
         }
     

@@ -1,18 +1,29 @@
 import { useDispatch, useSelector } from "react-redux";
-import { handleFetchPosts } from "../../asyncActions/posts";
+import { handleFetch } from "../../utils";
+import { displayPosts } from "../../store/actions/index";
+import { useEffect, useState } from 'react';
 
 function PostsList () {
     const dispatch = useDispatch();
-    const posts = useSelector(state => state.posts.posts);
+    // const posts = useSelector(state => state.posts.posts);
+    const url = 'https://jsonplaceholder.typicode.com/posts';
+    const [posts, setPosts] = useState([]);
+    
+    useEffect(() => {
+        dispatch(displayPosts(posts));
+    }, [posts]);
 
-    function displayPostList () {
-        dispatch(handleFetchPosts());
-    }
+    useEffect(() => {
+        const getPosts = async () => {
+            setPosts(await handleFetch(url));
+        }
+
+        getPosts();
+    }, []);
 
     return (
         <div className="content">
-            {displayPostList()}
-            {posts.length > 0 ?
+            {posts.length ? (
                 <table>
                     <thead>
                         <tr>
@@ -21,21 +32,21 @@ function PostsList () {
                             <th>Body</th>
                         </tr>
                     </thead>
-                   {posts.map(post =>
-                   <tbody>
-                        <tr>
-                            <td>{post.id}</td>
-                            <td>{post.title}</td>
-                            <td>{post.body}</td>
-                        </tr>
-                   </tbody>
-                   )} 
+                {posts.map((post) => {
+                    return (
+                        <tbody key={post.id}>
+                            <tr>
+                                <td>{post.id}</td>
+                                <td>{post.title}</td>
+                                <td>{post.body}</td>
+                            </tr>
+                        </tbody>
+                    )
+                })}
                 </table>
-            :
-                <div className='error'>
-                    <h3>No posts</h3>
-                </div>
-            }
+            ) : (
+                <div className='loading'></div>
+            )}
         </div>
     )
 }

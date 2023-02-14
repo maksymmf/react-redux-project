@@ -1,13 +1,13 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './Navigation.css';
 
 function Navigation () {
     return (
         <nav>
             <ul>
-                <li><Link to="/posts">Posts</Link></li>
-                <li><Link to="/todo">Todo</Link></li>
-                <li><Link to="/users">Users</Link></li>
+                <li><NavLink activeclassname="active" to="/posts">Posts</NavLink></li>
+                <li><NavLink activeclassname="active" to="/todo">Todo</NavLink></li>
+                <li><NavLink activeclassname="active" to="/users">Users</NavLink></li>
             </ul>
         </nav>
     )

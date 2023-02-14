@@ -7,13 +7,13 @@ const defaultState = {
 export const postsReducer = (state = defaultState, action) => {
     switch (action.type) {
         case DISPLAY_POSTS: {
-          return {
-              ...state,
-              posts: [
-                  ...state.posts,
-                  ...action.payload
-              ]
-          }
+            return {
+                ...state,
+                posts: [
+                    ...state.posts,
+                    ...action.payload
+                ]
+            }
         }
     
         default: return state;

@@ -1,18 +1,29 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { handleFetchUsers } from '../../asyncActions/users';
+import { handleFetch } from '../../utils';
+import { displayUsers } from "../../store/actions/index";
+import { useEffect, useState } from 'react';
 
 function UserList () {
     const dispatch = useDispatch();
-    const users = useSelector(state => state.users.users);
+    // const users = useSelector(state => state.users.users);
+    const url = 'https://jsonplaceholder.typicode.com/users';
+    const [users, setUsers] = useState([]);
 
-    function displayUserList() {
-        dispatch(handleFetchUsers());
-    }
+    useEffect(() => {
+        dispatch(displayUsers(users));
+    }, [users]);
+
+    useEffect(() => {
+        const getUsers = async () => {
+            setUsers(await handleFetch(url));
+        }
+
+        getUsers();
+    }, []);
 
     return (
         <div className='content'>
-            {displayUserList()}
-            {users.length > 0 ?
+            {users.length ? (
                 <table>
                     <thead>
                         <tr>
@@ -20,22 +31,30 @@ function UserList () {
                             <th>Username</th>
                         </tr>
                     </thead>
-                    {users.map(user =>
-                    <tbody>
-                        <tr>
-                            <td>{user.name}</td>
-                            <td>{user.username}</td>   
-                        </tr>    
-                    </tbody>   
-                    )}
+                    {users.map(user => {
+                        return (
+                            <tbody key={user.id}>
+                                <tr>
+                                    <td>{user.name}</td>
+                                    <td>{user.username}</td>   
+                                </tr>    
+                            </tbody>   
+                        )
+                    })}
                 </table>
-            :
-                <div className='error'>
-                    <h3>No clients</h3>
-                </div>
-            }
+            ) : (
+                <div className='loading'></div>
+            )}
         </div>
     )
 }
 
 export default UserList;
+
+    // useEffect(() => {
+    //     const displayUserList = () => {
+    //         dispatch(handleFetch(url, displayUsers));
+    //     }
+
+    //     displayUserList();
+    // }, []);

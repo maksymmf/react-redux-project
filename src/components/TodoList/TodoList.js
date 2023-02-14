@@ -1,18 +1,29 @@
 import { useDispatch, useSelector } from "react-redux";
-import { handleFetchTodo } from "../../asyncActions/todo";
+import { handleFetch } from "../../utils";
+import { displayTodo } from "../../store/actions/index";
+import { useState, useEffect } from 'react';
 
 function TodoList () {
     const dispatch = useDispatch();
-    const todo = useSelector(state => state.todo.todo);
+    // const todo = useSelector(state => state.todo.todo);
+    const url = 'https://jsonplaceholder.typicode.com/todos';
+    const [todo, setTodo] = useState([]);
 
-    function displayTodoList () {
-        dispatch(handleFetchTodo());
-    }
+    useEffect(() => {
+        dispatch(displayTodo(todo));
+    }, [todo]);
+
+    useEffect(() => {
+        const getTodo = async () => {
+            setTodo(await handleFetch(url));
+        }
+
+        getTodo();
+    }, []);
 
     return (
         <div className="content">
-            {displayTodoList()}
-            {todo.length > 0 ?
+            {todo.length ? (
                 <table>
                     <thead>
                         <tr>
@@ -21,25 +32,25 @@ function TodoList () {
                             <th>Completed</th>
                         </tr>
                     </thead>
-                   {todo.map(todo =>
-                   <tbody>
-                        <tr>
-                            <td>{todo.id}</td>
-                            <td>{todo.title}</td>
-                            {todo.completed ?
-                            <td className="completed"></td>
-                            :
-                            <td className="not-completed"></td>
-                            }
-                        </tr>
-                   </tbody>
-                   )} 
+                   {todo.map((todo) => {
+                        return (
+                            <tbody key={todo.id}>
+                                <tr>
+                                    <td>{todo.id}</td>
+                                    <td>{todo.title}</td>
+                                    {todo.completed ?
+                                        <td className="completed"></td>
+                                    :
+                                        <td className="not-completed"></td>
+                                    }
+                                </tr>
+                            </tbody>
+                        )
+                    })}
                 </table>
-            :
-                <div className='error'>
-                    <h3>No posts</h3>
-                </div>
-            }
+            ) : (
+                <div className='loading'></div>
+            )}
         </div>
     )
 }
