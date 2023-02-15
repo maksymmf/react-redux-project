@@ -1,4 +1,4 @@
-import { DISPLAY_USERS, DISPLAY_POSTS, DISPLAY_TODO } from "../types";
+import { DISPLAY_USERS, DISPLAY_POSTS, DISPLAY_TODO, TOGGLE_TODO } from "../types";
 
 export function displayUsers (payload) {
     return {
@@ -17,6 +17,13 @@ export function displayPosts (payload) {
 export function displayTodo (payload) {
     return {
         type: DISPLAY_TODO,
+        payload
+    }
+}
+
+export function toggleTodo (payload) {
+    return {
+        type: TOGGLE_TODO,
         payload
     }
 }

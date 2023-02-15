@@ -1,29 +1,34 @@
-import { useDispatch, useSelector } from "react-redux";
 import { handleFetch } from "../../utils";
-import { displayTodo } from "../../store/actions/index";
 import { useState, useEffect } from 'react';
 
 function TodoList () {
-    const dispatch = useDispatch();
-    // const todo = useSelector(state => state.todo.todo);
-    const url = 'https://jsonplaceholder.typicode.com/todos';
     const [todo, setTodo] = useState([]);
 
     useEffect(() => {
-        dispatch(displayTodo(todo));
-    }, [todo]);
-
-    useEffect(() => {
         const getTodo = async () => {
-            setTodo(await handleFetch(url));
+            setTodo(await handleFetch(`${process.env.REACT_APP_URL}todos`));
         }
 
         getTodo();
     }, []);
 
+    const handleTodoToggle = (id) => {
+        const updatedTodo = todo.map(todo => {
+            if (todo.id === id) {
+                return {
+                    ...todo,
+                    completed: !todo.completed
+                }
+            }
+            return todo;
+        });
+
+        setTodo(updatedTodo)
+    }
+
     return (
         <div className="content">
-            {todo.length ? (
+            {todo.length > 0 ? (
                 <table>
                     <thead>
                         <tr>
@@ -39,9 +44,11 @@ function TodoList () {
                                     <td>{todo.id}</td>
                                     <td>{todo.title}</td>
                                     {todo.completed ?
-                                        <td className="completed"></td>
+                                        <td className="completed" role="button" 
+                                        onClick={() => handleTodoToggle(todo.id)}></td>
                                     :
-                                        <td className="not-completed"></td>
+                                        <td className="not-completed" role="button" 
+                                        onClick={() => handleTodoToggle(todo.id)}></td>
                                     }
                                 </tr>
                             </tbody>

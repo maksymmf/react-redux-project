@@ -1,21 +1,12 @@
-import { useDispatch, useSelector } from "react-redux";
 import { handleFetch } from "../../utils";
-import { displayPosts } from "../../store/actions/index";
 import { useEffect, useState } from 'react';
 
 function PostsList () {
-    const dispatch = useDispatch();
-    // const posts = useSelector(state => state.posts.posts);
-    const url = 'https://jsonplaceholder.typicode.com/posts';
     const [posts, setPosts] = useState([]);
-    
-    useEffect(() => {
-        dispatch(displayPosts(posts));
-    }, [posts]);
 
     useEffect(() => {
         const getPosts = async () => {
-            setPosts(await handleFetch(url));
+            setPosts(await handleFetch(`${process.env.REACT_APP_URL}posts`));
         }
 
         getPosts();
@@ -23,7 +14,7 @@ function PostsList () {
 
     return (
         <div className="content">
-            {posts.length ? (
+            {posts.length > 0 ? (
                 <table>
                     <thead>
                         <tr>
