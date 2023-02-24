@@ -1,8 +1,7 @@
 import { DISPLAY_TODO, TOGGLE_TODO } from "../types";
 
 const defaultState = {
-    todo: [],
-    // completed
+    todo: []
 }
 
 export const todoReducer = (state = defaultState, action) => {
@@ -14,12 +13,6 @@ export const todoReducer = (state = defaultState, action) => {
                     ...state.todo,
                     ...action.payload
                 ]
-            }
-        }
-        case TOGGLE_TODO: {
-            return {
-                ...state,
-                completed: action.payload
             }
         }
     

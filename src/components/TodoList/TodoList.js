@@ -6,7 +6,9 @@ function TodoList () {
 
     useEffect(() => {
         const getTodo = async () => {
-            setTodo(await handleFetch(`${process.env.REACT_APP_URL}todos`));
+            const allTodos = await handleFetch(`${process.env.REACT_APP_URL}todos`);
+
+            setTodo(allTodos.slice(0, 10));
         }
 
         getTodo();
@@ -20,15 +22,16 @@ function TodoList () {
                     completed: !todo.completed
                 }
             }
+            
             return todo;
         });
 
-        setTodo(updatedTodo)
+        setTodo(updatedTodo);
     }
 
     return (
         <div className="content">
-            {todo.length > 0 ? (
+            {todo.length ? (
                 <table>
                     <thead>
                         <tr>
@@ -43,13 +46,19 @@ function TodoList () {
                                 <tr>
                                     <td>{todo.id}</td>
                                     <td>{todo.title}</td>
-                                    {todo.completed ?
-                                        <td className="completed" role="button" 
-                                        onClick={() => handleTodoToggle(todo.id)}></td>
-                                    :
-                                        <td className="not-completed" role="button" 
-                                        onClick={() => handleTodoToggle(todo.id)}></td>
-                                    }
+                                    {todo.completed ? (
+                                        <td 
+                                            className="todo-completed" 
+                                            role="button" 
+                                            onClick={() => handleTodoToggle(todo.id)}
+                                        ></td>
+                                    ) : (
+                                        <td 
+                                            className="todo-not-completed" 
+                                            role="button" 
+                                            onClick={() => handleTodoToggle(todo.id)}
+                                        ></td>
+                                    )}
                                 </tr>
                             </tbody>
                         )
