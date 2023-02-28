@@ -4,6 +4,7 @@ html, body {
 
 body {
   min-height: 100vh;
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -41,6 +42,11 @@ nav ul {
     padding: 1rem 2rem;
   }
 }
+@media (max-width: 480px) {
+  nav ul {
+    padding: 1rem;
+  }
+}
 nav ul li {
   list-style: none;
 }
@@ -72,6 +78,11 @@ nav ul li a:active {
 @media (max-width: 720px) {
   .content {
     padding: 0 2rem;
+  }
+}
+@media (max-width: 480px) {
+  .content {
+    padding: 0 1rem;
   }
 }
 .content h4 {
@@ -156,7 +167,7 @@ nav ul li a:active {
 }
 
 .add-post-button {
-  width: 15%;
+  width: 100%;
   margin: 0 auto 1rem;
   padding: 0.5rem 0;
   background-color: transparent;
@@ -168,11 +179,6 @@ nav ul li a:active {
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 }
-@media (max-width: 1023px) {
-  .add-post-button {
-    width: 100%;
-  }
-}
 .add-post-button:hover {
   background-color: #3C4048;
   color: #EAEAEA;
@@ -183,7 +189,7 @@ nav ul li a:active {
 }
 
 .add-post-button-darker {
-  width: 15%;
+  width: 100%;
   margin: 0 auto 1rem;
   padding: 0.5rem 0;
   background-color: transparent;
@@ -194,11 +200,6 @@ nav ul li a:active {
   border-radius: 5px;
   z-index: 1;
   opacity: 0.1;
-}
-@media (max-width: 1023px) {
-  .add-post-button-darker {
-    width: 100%;
-  }
 }
 
 .form-inactive {
@@ -287,6 +288,164 @@ form .error {
 }
 .close-form:hover {
   opacity: 0.5;
+}
+
+.user-data-table-header {
+  width: 100px;
+}
+@media (max-width: 1023px) {
+  .user-data-table-header {
+    width: 80px;
+  }
+}
+@media (max-width: 720px) {
+  .user-data-table-header {
+    width: 60px;
+  }
+}
+@media (max-width: 480px) {
+  .user-data-table-header {
+    width: 30px;
+  }
+}
+
+.user-contact {
+  display: flex;
+  width: 100%;
+  height: 30px;
+  background: url("../../../assets/img/info-green.png") no-repeat center;
+  background-size: 24%;
+  cursor: pointer;
+  transition: opacity 0.1s ease-in-out;
+}
+.user-contact:hover {
+  opacity: 0.5;
+}
+@media (max-width: 1023px) {
+  .user-contact {
+    background-size: 29%;
+  }
+}
+@media (max-width: 720px) {
+  .user-contact {
+    background-size: 35%;
+  }
+}
+@media (max-width: 480px) {
+  .user-contact {
+    height: 35px;
+    background-size: 55%;
+  }
+}
+.user-contact a {
+  width: 100%;
+}
+
+.user-page {
+  padding: 0 3rem;
+}
+@media (max-width: 720px) {
+  .user-page {
+    padding: 0 2rem;
+  }
+}
+.user-page .previous-page-button {
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.5rem 0;
+  background-color: transparent;
+  color: #00ABB3;
+  text-transform: uppercase;
+  font-weight: bolder;
+  border: 2px solid #00ABB3;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.user-page .previous-page-button:hover {
+  background-color: #3C4048;
+  color: #EAEAEA;
+  border: 2px solid #3C4048;
+}
+.user-page .previous-page-button:active {
+  color: #00ABB3;
+}
+.user-page .user-info {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+.user-page .user-info li {
+  margin-bottom: 3rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  list-style: none;
+}
+@media (max-width: 1023px) {
+  .user-page .user-info li {
+    margin-bottom: 1.5rem;
+  }
+}
+.user-page .user-info li span {
+  display: flex;
+  flex-shrink: 0;
+  align-self: center;
+  width: 35px;
+  height: 35px;
+  background-position: center 0;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+.user-page .user-info li .mobile-img {
+  background-image: url("../../../assets/img/mobile.png");
+}
+.user-page .user-info li .email-img {
+  background-image: url("../../../assets/img/email.png");
+}
+.user-page .user-info li .location-img {
+  background-image: url("../../../assets/img/location.png");
+}
+.user-page .user-info li .social-img {
+  background-image: url("../../../assets/img/social.png");
+}
+.user-page .user-info li .company-img {
+  background-image: url("../../../assets/img/company.png");
+}
+.user-page .user-info li ul li {
+  margin: 0;
+  list-style: none;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #3C4048;
+}
+.user-page .user-info li ul li:last-of-type {
+  margin-bottom: 0.2rem;
+}
+@media (max-width: 480px) {
+  .user-page .user-info li ul li {
+    font-size: 0.75rem;
+  }
+}
+@media (max-width: 720px) {
+  .user-page .user-info li ul li {
+    font-size: 0.9rem;
+  }
+}
+.user-page .user-info li ul li a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid #3C4048;
+}
+.user-page .user-info li ul li p {
+  margin: 0;
+  font-size: 1rem;
+  color: rgba(60, 64, 72, 0.5);
+}
+@media (max-width: 720px) {
+  .user-page .user-info li ul li p {
+    font-size: 0.75rem;
+  }
 }
 
 /*# sourceMappingURL=App.css.map */

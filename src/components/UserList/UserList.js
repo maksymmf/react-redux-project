@@ -1,5 +1,6 @@
 import { handleFetch } from '../../utils';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function UserList () {
     const [users, setUsers] = useState([]);
@@ -20,6 +21,7 @@ function UserList () {
                         <tr>
                             <th>Name</th>
                             <th>Username</th>
+                            <th className='user-data-table-header'>User Data</th>
                         </tr>
                     </thead>
                     {users.map(user => {
@@ -27,7 +29,8 @@ function UserList () {
                             <tbody key={user.id}>
                                 <tr>
                                     <td>{user.name}</td>
-                                    <td>{user.username}</td>   
+                                    <td>{user.username}</td>
+                                    <td className='user-contact'><Link to={`${user.id}`}></Link></td>
                                 </tr>    
                             </tbody>   
                         )
