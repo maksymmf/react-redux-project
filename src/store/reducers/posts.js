@@ -15,8 +15,7 @@ export const postsReducer = (state = defaultState, action) => {
                 ]
             }
         }
-    
+
         default: return state;
-      }
-      
+    }
 }

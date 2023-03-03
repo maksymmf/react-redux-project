@@ -13,10 +13,9 @@ export const usersReducer = (state = defaultState, action) => {
                     ...state.users,
                     ...action.payload
                 ]
-          }
+            }
         }
     
         default: return state;
-      }
-      
+    }
 }

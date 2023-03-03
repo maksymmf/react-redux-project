@@ -1,4 +1,4 @@
-import { DISPLAY_TODO, TOGGLE_TODO } from "../types";
+import { DISPLAY_TODO } from "../types";
 
 const defaultState = {
     todo: []
@@ -15,8 +15,7 @@ export const todoReducer = (state = defaultState, action) => {
                 ]
             }
         }
-    
+
         default: return state;
-      }
-      
+    }
 }

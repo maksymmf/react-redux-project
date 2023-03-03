@@ -40,7 +40,7 @@ function TodoList () {
                             <th>Completed</th>
                         </tr>
                     </thead>
-                   {todo.map((todo) => {
+                    {todo.map((todo) => {
                         return (
                             <tbody key={todo.id}>
                                 <tr>

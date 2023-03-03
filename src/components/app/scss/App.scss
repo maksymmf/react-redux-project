@@ -107,7 +107,7 @@ nav {
             font-size: .85rem;
             padding: .7rem .2rem;
             border-bottom: 1px solid $grey-color;
-          }
+        }
     }
 }
 
@@ -124,12 +124,10 @@ nav {
 
 .todo-completed {
     background: url('../../../assets/img/completed.png') no-repeat center;
-  }
-  
+}  
 .todo-not-completed {
     background: url('../../../assets/img/not-completed.png') no-repeat center;
 }
-  
 .todo-completed, .todo-not-completed {
     background-size: 13%;
     cursor: pointer;
@@ -161,14 +159,14 @@ nav {
     width: 50px;
     height: 50px;
     animation: spin 2s linear infinite;
+}
 
-    @keyframes spin {
-        0% {
-            transform: rotate(0deg);
-        } 
-        100% {
-            transform: rotate(360deg);
-        }
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    } 
+    100% {
+        transform: rotate(360deg);
     }
 }
 
@@ -183,7 +181,7 @@ nav {
     border: 2px solid $green-color;
     border-radius: 5px;
     cursor: pointer;
-    transition: all .2s ease-in-out;
+    transition: background-color .2s ease-in-out;
 
     &:hover {
         background-color: $grey-color;
@@ -260,7 +258,7 @@ form {
         border-radius: 5px;
         background-color: $green-color;
         cursor: pointer;
-        transition: all .2s ease-in-out;
+        transition: background-color .2s ease-in-out;
 
         &:hover {
             background-color: $grey-color;
@@ -281,7 +279,7 @@ form {
         margin-bottom: 1rem;
         font-size: .75rem;
         color: $red-color;
-      }
+    }
 }
 
 .close-form {
@@ -351,8 +349,16 @@ form {
 .user-page {
     padding: 0 3rem;
 
+    @include md {
+        padding: 0 3rem;
+    }
+
     @include sm {
         padding: 0 2rem;
+    }
+
+    @include xs {
+        padding: 0 1rem;
     }
 
     .previous-page-button {
@@ -366,7 +372,7 @@ form {
         border: 2px solid $green-color;
         border-radius: 5px;
         cursor: pointer;
-        transition: all .2s ease-in-out;
+        transition: background-color .2s ease-in-out;
 
         &:hover {
             background-color: $grey-color;
@@ -379,13 +385,147 @@ form {
         }
     }
 
+    div {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        @include md {
+            flex-direction: column-reverse;
+        }
+    }
+
+    .tabs {
+        display: block;
+        width: 50%;
+
+        @include md {
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+
+        .tabs-header {
+            margin-bottom: 1rem;
+            padding: 0;
+            display: flex;
+            border: 2px solid $green-color;
+            border-radius: 5px;
+
+            li {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                list-style: none;
+
+                a {
+                    padding: .5rem 1rem;
+                    display: flex;
+                    flex: 1 1 auto;
+                    justify-content: center;
+                    font-weight: bolder;
+                    text-decoration: none;
+                    color: $green-color;
+                    font-size: .85rem;
+                    text-transform: uppercase;
+                    cursor: pointer;
+                    transition: opacity .2s ease-in-out;
+
+                    &:hover {
+                        opacity: .5;
+                    }
+
+                    &:active {
+                        color: $red-color;
+                    }
+                }
+            }
+
+            .active-link {
+                background-color: $green-color;
+                color: $white-color;
+                transition: opacity .2s ease-in-out;
+
+                &:hover {
+                    opacity: .7;
+                }
+            }
+        }
+
+        .tabs-content {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            background-color: transparent;
+
+            .tab-active {
+                display: block;
+                color: $grey-color;
+
+                tr {
+                    color: $grey-color;
+                }
+
+                th {
+                    padding: .2rem;
+                    text-transform: uppercase;
+                    font-size: .95rem;
+
+                    @include xs {
+                        font-size: .85rem;
+                    }
+                }
+
+                td {
+                    font-size: .95rem;
+                    margin-bottom: 2rem;
+                    border-bottom: 1px solid $grey-color;
+
+                    @include xs {
+                        font-size: .85rem;
+                    }
+                }
+
+                .todo-completed {
+                    background: url('../../../assets/img/completed.png') no-repeat center;
+                }
+                .todo-not-completed {
+                    background: url('../../../assets/img/not-completed.png') no-repeat center;
+                }
+                .todo-completed, .todo-not-completed {
+                    width: 100%;
+                    height: 30px;
+                    margin: .5rem 0;
+                    display: block;
+                    background-size: 25%;
+                    border-bottom: none;
+                    cursor: pointer;
+                    transition: opacity .1s ease-in-out;
+                
+                    &:hover {
+                        opacity: .5;
+                    }
+                }
+            }
+
+            .tab-inactive {
+                display: none;
+            }
+        }
+    }
+
     .user-info {
+        width: 40%;
         display: flex;
         flex-direction: column;
         padding: 0;
+
+        @include md {
+            width: 100%;
+        }
         
         li {
-            margin-bottom: 3rem;
+            margin-bottom: 1rem;
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -399,8 +539,8 @@ form {
                 display: flex;
                 flex-shrink: 0;
                 align-self: center;
-                width: 35px;
-                height: 35px;
+                width: 25px;
+                height: 25px;
                 background-position: center 0;
                 background-repeat: no-repeat;
                 background-size: 100%;
@@ -430,7 +570,7 @@ form {
                 li {
                     margin: 0;
                     list-style: none;
-                    font-size: 1.2rem;
+                    font-size: .95rem;
                     font-weight: 500;
                     color: $grey-color;
     
@@ -438,12 +578,8 @@ form {
                         margin-bottom: .2rem;
                     }
     
-                    @include xs {
-                        font-size: .75rem;
-                    }
-    
                     @include sm {
-                        font-size: .9rem;
+                        font-size: .85rem;
                     }
 
                     a {
@@ -454,11 +590,11 @@ form {
 
                     p {
                         margin: 0;
-                        font-size: 1rem;
+                        font-size: .95rem;
                         color: $grey-lighter-color;
         
                         @include sm {
-                            font-size: .75rem;
+                            font-size: .85rem;
                         }
                     }
                 }
